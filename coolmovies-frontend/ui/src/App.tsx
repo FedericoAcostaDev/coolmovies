@@ -1,10 +1,15 @@
-import React from 'react';
+import { client } from './sevices/client';
+import UsersList from './containers/users_list';
+import { ApolloProvider } from "@apollo/client";
 
 function App() {
   return (
-    <div className="App">
-      <h1>oi</h1>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <h1>tchauuu</h1>
+        <UsersList />
+      </div>
+    </ApolloProvider>
   );
 }
 

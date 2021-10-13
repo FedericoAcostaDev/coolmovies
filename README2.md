@@ -1,6 +1,14 @@
 # Introduction
 
-// node:14;17.3-buster  
+# Technologies
+
+- React.Js
+- Typescript
+- Styled Components
+- Jest Testing library
+- Apollo Client
+- GraphQl
+- Postgres db
 
 # Getting Started
 
@@ -8,7 +16,15 @@
 
 https://docs.docker.com/engine/install/ubuntu/ 
 
-## Start backend server
+## Backend server and database
+
+1. First we need to be at out backend directory path
+
+`cd coolmovies-backend`
+
+2. Then, we should run our docker compose file
+
+`docker-compose up`
 
 ## Build UI structure
 
@@ -20,13 +36,15 @@ https://docs.docker.com/engine/install/ubuntu/
 
 2. Then we'll need to create our app's image. You can do this by the script `docker:up` set by our package.json script or by the original command:
 
-`docker build -t react:app .`
+`docker build -t react-coolmovies:app .`
 
-3. So we can run our app. You can do this by the script `docker:run` set by our package.json script or by the original command:
+3. So we can run our app. You can do this by the script `docker:run` set by our package.json file or by the original command:
 
-`docker run -p 3000:3000 react:app`
+`docker run -p 3000:3000 react-coolmovies:app`
 
 4. That's it! Access [port 3000](http://localhost:3000)
+
+:mega: If you want to use docker container with hotreload for local development, then use the shortcut `docker:watch` instead of step three command! This shortcut has also been set in our package.json file.
 
 ## Stop running current container
 
@@ -44,4 +62,4 @@ https://docs.docker.com/engine/install/ubuntu/
 
 `docker stop 00NUMBERID00`
 
-4. That's it! Then you can start another 
+4. That's it! Then you can run another one at the same port. To check built images, run command `docker images`
