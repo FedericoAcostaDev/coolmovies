@@ -26,6 +26,8 @@ https://docs.docker.com/engine/install/ubuntu/
 
 `docker-compose up`
 
+:mega: To rebuild docker image, we can use `docker-compose up --build`
+
 ## Build UI structure
 
 :mega: Warning: You might need "sudo" to run docker commands.

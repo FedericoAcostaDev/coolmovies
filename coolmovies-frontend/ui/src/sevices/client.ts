@@ -3,21 +3,14 @@ import { onError } from "@apollo/client/link/error";
 
 const getErrorsLogs = (errorsArray: any) => errorsArray.map(({ message } : { message: any }) => console.log(message));
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-  graphQLErrors ? getErrorsLogs(graphQLErrors) : alert(networkError);
-})
+const errorLink = onError(({ graphQLErrors, networkError }) => graphQLErrors ? getErrorsLogs(graphQLErrors) : alert(networkError));
 
-const link = from([
+const httpLink = from([
   errorLink,
-  new HttpLink({
-    uri: 'http://localhost:5000/graphiql',
-    fetchOptions: {
-      mode: 'no-cors',
-    }
-  })
+  new HttpLink({ uri: 'http://localhost:5000/graphql' })
 ]);
 
 export const client = new ApolloClient({
-  link,
+  link: httpLink,
   cache: new InMemoryCache()
 }); 

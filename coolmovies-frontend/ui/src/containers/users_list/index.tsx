@@ -8,9 +8,11 @@ function UsersList(){
 
   useEffect(() => { data && setUsers(data) }, [data]);
 
+  console.log(users)
+
   return (
     <div>
-      oi
+      
     </div>
   )
 }

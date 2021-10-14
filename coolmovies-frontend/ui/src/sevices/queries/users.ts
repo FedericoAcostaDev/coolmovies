@@ -11,4 +11,16 @@ export const getUsersData = gql`
       }
     }
   }
-`
+`;
+
+export const getCurrentUserData = gql`
+  query {
+    currentUser {
+      name
+      id
+      commentsByUserId {
+        totalCount
+      }
+    }
+  }
+`;
