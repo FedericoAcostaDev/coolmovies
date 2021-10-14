@@ -1,25 +1,21 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 
 import { setMovieReview } from '../../sevices/mutations/movie_review';
 import { getCurrentUserData } from '../../sevices/queries/users';
 
-interface ReviewData {
-  title: string,
-  movieId: string,
-  userReviewerId: string,
-  body: string,
-  rating: number
-}
+import { Container } from './styles';
+import { ReviewData, FetchCurrentUserData } from './types';
 
-function ReviewForm(){
+const ReviewForm: React.FC = () => {
   const [name, setName] = useState("");
   const [movieId, setMovieId] = useState("");
   const [commentary, setCommentary] = useState("");
   const [movieRating, setmovieRating] = useState("");
   const [currentUser, setCurrentUser] = useState("");
 
-  const { data } = useQuery(getCurrentUserData);
+  const { data } = useQuery<FetchCurrentUserData>(getCurrentUserData);
   const [createMovieReview] = useMutation(setMovieReview);
 
   useEffect(() => { data && setCurrentUser(data.currentUser.id) }, [data]);
@@ -35,7 +31,7 @@ function ReviewForm(){
   });
 
   return (
-    <div>
+    <Container>
       <input
         type="text"
         onChange={(e) => setName(e.target.value)} 
@@ -55,7 +51,7 @@ function ReviewForm(){
       <button onClick={sendReview}>
         Enviar
       </button>
-    </div>
+    </Container>
   )
 }
 

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import React from 'react';
+import { useEffect, useState } from 'react';
+
+import { useQuery } from '@apollo/client';
 import { getUsersData } from '../../sevices/queries/users';
 
-function UsersList(){
+const ReviewList: React.FC = () => {
   const { error, loading, data } = useQuery(getUsersData);
   const [users, setUsers] = useState([]);
 
@@ -17,4 +19,4 @@ function UsersList(){
   )
 }
 
-export default UsersList;
+export default ReviewList;

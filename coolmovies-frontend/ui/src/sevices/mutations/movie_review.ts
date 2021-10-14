@@ -23,3 +23,25 @@ export const setMovieReview = gql`
     }
   }
 `
+
+export const updateMovieReview = gql`
+  mutation updateMovieReview(
+    $id: UUID!
+    $body: String!
+    $title: String!
+    $rating: Int
+  ) {
+    updateMovieReview(
+      input: {
+        nodeId: $id,
+        movieReviewPatch: {
+          rating: $rating
+          title: $title
+          body: $body
+        }
+      }
+    ) {
+      clientMutationId
+    }
+  }
+`

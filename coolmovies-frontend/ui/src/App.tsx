@@ -1,16 +1,15 @@
-import { client } from './sevices/client';
-import UsersList from './containers/users_list';
+import React from 'react';
+import MoviesList from './containers/movies_list';
 import ReviewForm from './containers/review_form';
+
+import { client } from './sevices/client';
 import { ApolloProvider } from "@apollo/client";
 
-function App() {
+const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <h1>tchauuu</h1>
-        <UsersList />
-        <ReviewForm />
-      </div>
+      <MoviesList />
+      <ReviewForm />
     </ApolloProvider>
   );
 }
