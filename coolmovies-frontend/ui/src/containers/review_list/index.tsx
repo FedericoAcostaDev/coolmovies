@@ -2,20 +2,29 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 import { useQuery } from '@apollo/client';
-import { getUsersData } from '../../sevices/queries/users';
+import { getReviews } from '../../sevices/queries/movie_reviews';
+
+import { Container } from './styles';
+import { parseReviewList } from './utils';
+import { ReviewListParam, ReviewData } from './types';
 
 const ReviewList: React.FC = () => {
-  const { error, loading, data } = useQuery(getUsersData);
-  const [users, setUsers] = useState([]);
+  const { data } = useQuery(getReviews);
+  const [reviews, setReviews] = useState([]);
+  
+  const updateState = (data: ReviewListParam) => {
+    const parsedData = parseReviewList(data);
+    setReviews(parsedData);
+  }
 
-  useEffect(() => { data && setUsers(data) }, [data]);
+  useEffect(() => { data && updateState(data) }, [data]);
 
-  console.log(users)
+  const renderReview = (review: ReviewData) => <h1>{review.title}</h1>;
 
   return (
-    <div>
-      
-    </div>
+    <Container>
+      {reviews && reviews.map(review => renderReview(review))}
+    </Container>
   )
 }
 

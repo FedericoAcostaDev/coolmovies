@@ -16,7 +16,7 @@ const ReviewForm: React.FC = () => {
   const [currentUser, setCurrentUser] = useState("");
 
   const { data } = useQuery<FetchCurrentUserData>(getCurrentUserData);
-  const [createMovieReview] = useMutation(setMovieReview);
+  const [createMovieReview] = useMutation<ReviewData>(setMovieReview);
 
   useEffect(() => { data && setCurrentUser(data.currentUser.id) }, [data]);
 
