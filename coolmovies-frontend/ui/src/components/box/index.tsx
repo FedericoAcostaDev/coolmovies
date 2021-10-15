@@ -2,12 +2,13 @@ import React from 'react';
 import { BoxContainer, BoxContent } from './styles';
 
 interface BoxProps {
-  background?: string
+  backgroundImage?: string,
+  withoutBackground?: boolean
 }
 
-const Box: React.FC<BoxProps> = ({ children, background }) => { 
+const Box: React.FC<BoxProps> = ({ children, backgroundImage = '', withoutBackground = false}) => { 
   return (
-    <BoxContainer>
+    <BoxContainer background={backgroundImage} withoutBackground={withoutBackground}>
       <BoxContent>
         { children }
       </BoxContent>

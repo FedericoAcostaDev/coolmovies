@@ -2,11 +2,11 @@ import React from 'react';
 import Box from '../../components/box';
 import { Title } from './styles';
 
-interface HomeProps {
+interface ProfileProps {
   title: string,
 }
 
-const Home: React.FC<HomeProps> = ({ title }) => { 
+const Profile: React.FC<ProfileProps> = ({ title }) => { 
   return (
     <Box>
       <Title>
@@ -16,8 +16,8 @@ const Home: React.FC<HomeProps> = ({ title }) => {
   )
 }
 
-Home.defaultProps = {
+Profile.defaultProps = {
   title: 'Welcome back!'
 }
 
-export default Home;
+export default Profile;

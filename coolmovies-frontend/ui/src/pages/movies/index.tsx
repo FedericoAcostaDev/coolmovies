@@ -2,11 +2,11 @@ import React from 'react';
 import Box from '../../components/box';
 import { Title } from './styles';
 
-interface HomeProps {
+interface MoviesProps {
   title: string,
 }
 
-const Home: React.FC<HomeProps> = ({ title }) => { 
+const Movies: React.FC<MoviesProps> = ({ title }) => { 
   return (
     <Box>
       <Title>
@@ -16,8 +16,8 @@ const Home: React.FC<HomeProps> = ({ title }) => {
   )
 }
 
-Home.defaultProps = {
+Movies.defaultProps = {
   title: 'Welcome back!'
 }
 
-export default Home;
+export default Movies;
