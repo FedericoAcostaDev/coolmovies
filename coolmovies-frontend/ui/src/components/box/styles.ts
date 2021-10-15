@@ -14,8 +14,8 @@ export const BoxContainer = styled(Container)`
   background-size: cover;
   height: 100vh;
   width: 100%;
-  ${Container};
   padding: 0;
+  margin-top: -70px;
 `;
 
 export const BoxContent = styled.section`

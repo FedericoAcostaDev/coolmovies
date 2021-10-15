@@ -2,17 +2,14 @@ import React from 'react';
 import { BoxContainer, BoxContent } from './styles';
 
 interface BoxProps {
-  Component?: React.FC,
   background?: string
 }
 
-const Box: React.FC<BoxProps> = ({ Component, background, ...props }) => {
-  const renderWrappedComponent = () => Component && <Component {...props} />;
-  
+const Box: React.FC<BoxProps> = ({ children, background }) => { 
   return (
     <BoxContainer>
       <BoxContent>
-        { renderWrappedComponent() }
+        { children }
       </BoxContent>
     </BoxContainer>
   )

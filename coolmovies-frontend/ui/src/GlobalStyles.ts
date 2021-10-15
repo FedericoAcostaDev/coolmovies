@@ -11,7 +11,7 @@ const BebasFont = css`
 const GlobalStyles = createGlobalStyle`
   ${RobotoFont}
   ${BebasFont}
-  
+
   * {
     margin: 0;
     padding: 0;
@@ -27,14 +27,14 @@ export default GlobalStyles;
 
 export const Container = styled.div`
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 16px;
   width: 100%;
 
   @media (min-width: 475px){
-    padding: 0 20px;
+    padding: 20px;
   }
 
   @media (min-width: 992px) {
-    padding: 0 24px;
+    padding: 24px;
   }
 `;

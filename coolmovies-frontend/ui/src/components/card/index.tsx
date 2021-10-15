@@ -1,16 +1,30 @@
 import React from 'react';
-import { Box } from './styles';
+import { CardContainer, CardContent, CardImage, CardText, CardTitle, CardSubtitle } from './styles';
 
 interface CardProps {
   title: string,
-  release: string
+  image?: string,
+  text: string,
+  subtitle?: string,
+  hideImage?: boolean
 }
 
-const Card: React.FC<CardProps> = ({ title, release }) => {
+const Card: React.FC<CardProps> = ({ title, image, text, subtitle, hideImage}) => {
+  const isImageVisible = !hideImage;
+
   return (
-    <Box>
-      
-    </Box>
+    <CardContainer>
+      <CardContent>
+        { isImageVisible && <CardImage src={image} /> }
+        <CardTitle>
+          { title }
+        </CardTitle>
+        { subtitle && <CardSubtitle> {subtitle} </CardSubtitle>}
+        <CardText>
+          { text }
+        </CardText>
+      </CardContent>
+    </CardContainer>
   )
 }
 

@@ -7,10 +7,9 @@ export const NavbarContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${Container};
   padding: 0;
   position: sticky;
-  background: rgba(47,0,0,0.95);
+  background: rgba(47,0,0,0.78);
   box-shadow: -2px 21px 40px 1px rgba(0,0,0,0.45);
   width: 100%;
   z-index: 10;
