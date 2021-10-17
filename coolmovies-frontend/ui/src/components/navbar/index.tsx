@@ -26,8 +26,8 @@ const Navbar: React.FC<NavbarProps> = ({ Icon, title, items }) => {
       {renderLogo()}
       <Nav>
         <NavList>
-          {items.map(({ name, path }) => (
-            <NavItem>
+          {items.map(({ name, path }, index) => (
+            <NavItem key={index}>
               <NavLink to={path}>
                 {name}
               </ NavLink>

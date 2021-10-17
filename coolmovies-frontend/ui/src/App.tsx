@@ -14,7 +14,7 @@ const App: React.FC = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Movies', path: '/' },
-    { name: 'Reviews', path: '/' },
+    { name: 'My Reviews', path: '/my-reviews' },
     { name: 'About', path: '/' }
   ];
 
@@ -22,9 +22,7 @@ const App: React.FC = () => {
     <ApolloProvider client={client}>
       <Router>
         <Navbar items={navItems} title="Coolmovies" Icon={BiMoviePlay} />
-        <Switch>
-          <Routes />
-        </Switch>
+        <Routes />
       </Router>
       <GlobalStyles />
     </ApolloProvider>

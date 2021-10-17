@@ -2,14 +2,16 @@ import styled from 'styled-components';
 import { Container } from '../../GlobalStyles';
 import User from '../../images/user.png';
 
-export const CardContainer = styled(Container)`
+export const CardContainer = styled(Container)<{ maxWidth?: string, maxHeight?: string, minWidth?: string, minHeight?: string, width?: string, height?: string }>`
   background: #FFF;
-  height: 100%;
-  width: 100%;
   box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.19);
   border-radius: 8px;
-  max-width: 360px;
-  max-height: 460px;
+  max-width: ${({ maxWidth }) => maxWidth || '360px'};
+  max-height: ${({ maxHeight }) => maxHeight || '460px'};
+  min-width: ${({ minWidth }) => minWidth || 'unset'};
+  min-height: ${({ minHeight }) => minHeight || 'unset'};
+  width: ${({ width }) => width || '100%'};
+  height: ${({ height }) => height || '100%'};
 `;
 
 export const CardContent = styled.div`
@@ -25,7 +27,6 @@ export const CardContent = styled.div`
 
 export const CardImage = styled.img.attrs({
   src: User,
-
 })`
   height: 100px;
   width: 100px;
@@ -52,6 +53,7 @@ export const CardText = styled.p`
   color: #616161;
   margin-bottom: 20px;
   line-height: 20px;
+  overflow: hidden;
 `;
 
 export const CardFooter = styled.div`

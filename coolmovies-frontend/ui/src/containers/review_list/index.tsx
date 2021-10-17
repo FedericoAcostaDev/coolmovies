@@ -2,14 +2,18 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 import { useQuery } from '@apollo/client';
-import { getReviews } from '../../sevices/queries/movie_reviews';
 
 import { Container } from './styles';
+import Card from '../../components/card';
 import { parseReviewList } from './utils';
 import { ReviewListParam, ReviewData } from './types';
 
-const ReviewList: React.FC = () => {
-  const { data } = useQuery(getReviews);
+interface ReviewList {
+  gqlQuery: any,
+}
+
+const ReviewList: React.FC<ReviewList> = ({ gqlQuery }) => {
+  const { data } = useQuery(gqlQuery);
   const [reviews, setReviews] = useState([]);
   
   const updateReviewList = (data: ReviewListParam) => {
@@ -19,7 +23,14 @@ const ReviewList: React.FC = () => {
 
   useEffect(() => { data && updateReviewList(data) }, [data]);
 
-  const renderReview = (review: ReviewData) => <h1>{review.title}</h1>;
+  const cardSize = {
+    maxWidth: '400px',
+    minWidth: '300px',
+    height: 'auto',
+    maxHeight: '500px'
+  };
+
+  const renderReview = (review: ReviewData) => <Card title={review.title} subtitle={`Rating: ${review.rating}`} text={review.body} hideImage={true} size={cardSize} />;
 
   return (
     <Container>

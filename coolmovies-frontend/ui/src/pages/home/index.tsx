@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '../../components/box';
+import Button from '../../components/button';
 import Card from '../../components/card';
 
 interface HomeProps {
@@ -8,10 +9,16 @@ interface HomeProps {
   subtitle?: string
 }
 
-const Home: React.FC<HomeProps> = ({ title, text, subtitle }) => { 
+const Home: React.FC<HomeProps> = ({ title, text, subtitle }) => {
+  const consoleLog = () => {
+    console.log('oi')
+  }
+
   return (
     <Box>
-      <Card title={title} text={text} subtitle={subtitle} />
+      <Card title={title} text={text} subtitle={subtitle}>
+        <Button text="Start a review" link="/review" onClick={consoleLog} />
+      </Card>
     </Box>
   )
 }

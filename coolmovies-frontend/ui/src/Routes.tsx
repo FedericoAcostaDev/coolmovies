@@ -1,13 +1,5 @@
-import React, { Component } from 'react';
-import GlobalStyles from './GlobalStyles';
-
-import Box from './components/box';
-import Card from './components/card';
-import MoviesList from './containers/movies_list';
-import ReviewList from './containers/review_list';
-import ReviewForm from './containers/review_form';
-
 import Home from './pages/home';
+import Reviews from './pages/reviews';
 
 import {
   Switch,
@@ -17,7 +9,11 @@ import {
 const Routes: Function = () => {
   return (
     <Switch>
-      <Route path="/" component={Home}/>
+      <Route exact path="/" component={Home}/>
+      <Route path="/my-reviews" render={() => (
+          <Reviews />
+        )}
+        />
     </Switch>
   );
 }

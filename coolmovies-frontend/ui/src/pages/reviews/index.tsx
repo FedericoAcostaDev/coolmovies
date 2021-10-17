@@ -1,23 +1,17 @@
 import React from 'react';
+import BgImg from '../../images/popcorn.jpg';
+
 import Box from '../../components/box';
-import { Title } from './styles';
+import ReviewList from '../../containers/review_list';
 
-interface ReviewsProps {
-  title: string,
-}
+import { getReviews } from '../../sevices/queries/movie_reviews';
 
-const Reviews: React.FC<ReviewsProps> = ({ title }) => { 
+const Reviews: React.FC = () => {
   return (
-    <Box>
-      <Title>
-        {title}
-      </Title>
+    <Box backgroundImage={BgImg}>
+      <ReviewList gqlQuery={getReviews} />
     </Box>
   )
-}
-
-Reviews.defaultProps = {
-  title: 'Welcome back!'
 }
 
 export default Reviews;

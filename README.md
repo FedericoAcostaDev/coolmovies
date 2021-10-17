@@ -8,11 +8,11 @@
     - [Build UI structure](#pushpin-build-ui-structure)
     - [Stop container](#pushpin-stop-running-current-container)
 
-## :sparkles: Introduction
+# :sparkles: Introduction
 
-### :pushpin: About
+## :pushpin: About
 
-### :pushpin: Technologies
+## :pushpin: Technologies
 
 - React.Js
 - Typescript
@@ -22,15 +22,15 @@
 - GraphQl
 - Postgres db
 
-## :sparkles: Getting Started
+# :sparkles: Getting Started
 
-### :pushpin: Install Docker and Docker compose
+## :pushpin: Install Docker and Docker compose
 
 :mega: Warning: You might need "sudo" to run docker commands.
 
 https://docs.docker.com/engine/install/ubuntu/ 
 
-### :pushpin: Running our app
+## :pushpin: Running our app
 
 If you want to get the app up, you can just run:
 
