@@ -1,73 +1,86 @@
+# Introduction
 
-- [Introduction: Coolmovies challenge](#introduction-coolmovies-challenge)
-  - [Requirements](#requirements)
-  - [Running the server](#running-the-server)
-  - [Play around with some examples](#play-around-with-some-examples)
-  - [Reinitializing the database with seed data](#reinitializing-the-database-with-seed-data)
+# Technologies
 
-# Introduction: Coolmovies challenge
-You have to build a cool movies review application using React.
+- React.Js
+- Typescript
+- Styled Components
+- Jest Testing library
+- Apollo Client
+- GraphQl
+- Postgres db
 
-There must be 2 main features:
-- You have to list the movie reviews;
-- You have to be able to edit your reviews.
+# Getting Started
 
-We are providing you a GraphQL API mock application to consume and update the list from, that's all! Consuming this API is a requirement, everything else is up to you.
+## Install Docker and Docker compose
 
-Bonuses would apply for everything else you add, some ideas (but not limited to):
-- Responsive design
-- Nice and clean UI
-- Animations
-- Page transitions
-- Filters and sorters
-- Extending the API to add more features
-- Use external libraries/helpers
-- Anything else you can think of! We love creative people :)
+:mega: Warning: You might need "sudo" to run docker commands.
 
-## Requirements
+https://docs.docker.com/engine/install/ubuntu/ 
 
-- Docker, a recent version (>= 20)
-- Docker Compose (one compatible with above docker)
-- Your local ports 5432 and 5000 free (not running another postgres server, for instance)
+## Running our app
 
-You need docker and docker compose installed on your machine. It supports Linux, MacOS and Windows.
+If you want to get the app up, you can just run:
 
-If it's your first time, you can follow the official instructions:
-https://docs.docker.com/desktop/
-https://docs.docker.com/compose/install/
+`docker-compose up`
 
-## Running the server
+And visit [port 3000](http://localhost:3000) to see our application preview.
 
-    cd coolmovies-backend
-    docker-compose up
+If you want to change our application code base, we recommend you to follow the next steps:
+## Backend server and database
 
-Wait for a log message like this: `PostGraphile v4.12.3 server listening on port 5000`
+Open a terminal window.
 
-Now try to connect to GraphiQL: http://localhost:5000/graphiql
+1. First we need to be at our backend's directory path
 
-## Play around with some examples
-Now that your backend is working, you can play around with some queries and mutation that we already built as example. Keep in mind that running mutations here you will be actually mutating the data in your backend, but don't worry if you have an accident! In the next section we explain you how to reset your server database.
+`cd coolmovies-backend`
 
-We are using Insomnia to provide you some examples. If you don't know about Insomnia you can think about it as another Postman application.
+2. Then, we should run our docker compose file
 
-You can install Insomnia from here: https://insomnia.rest
+`docker-compose up`
 
-Once that you have it running, you can import Insomnia_Collection.json from the `backend` folder.
+:mega: To rebuild docker image, we can use `docker-compose up --build`
 
-## Reinitializing the database with seed data
-So you were playing with the mutations and deleted something you shouldn't, no problem!
+## Build UI structure
 
-Go to the `coolmovies-backend` folder using your preferred terminal, then:
+Open a new terminal window.
 
-    docker-compose down
-    docker volume rm coolmovies-backend_db
-    docker rmi coolmovies-db:latest
-    docker-compose up
+1. First we need to be at our frontend's directory path
 
-If you want also to rebuild the Postgraphile Server, run this before the `up` command.
+`cd coolmovies-frontend/ui`
 
-    docker rmi coolmovies-graphql:**latest**
+2. Then we'll need to create our app's image. You can do this by the script `docker:up` set by our package.json script or by the original command:
 
-Good luck and have fun!
+`docker build -t react-coolmovies:app .`
 
-The ecoPortal Team
+3. Now we're gonna tun that built image.
+
+3.1 If you want to use docker container **with** hotreload for local development, then use the shortcut:
+
+`docker:watch`
+
+This shortcut has also been set in our package.json file.
+
+3.2 Otherwise, to get the app up **without** hotreload, you can run the shortcut `docker:run` set by our package.json file or the original command: 
+
+`docker run -p 3000:3000 react-coolmovies:app`
+
+4. That's it! Access [port 3000](http://localhost:3000)
+
+## Stop running current container
+
+1. Check current running containers by following command:
+
+`docker ps`
+
+2. Your terminal should show something like this:
+
+| CONTAINER ID |  IMAGE          |
+|--------------|-----------------|
+| 00NUMBERID00 | react:app       |
+
+3. Get the number of which container you want to stop and execute:
+
+`docker stop 00NUMBERID00`
+
+4. That's it! Then you can run another one at the same port. To check built images, run command `docker images`
