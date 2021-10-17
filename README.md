@@ -1,6 +1,5 @@
-# Introduction
-
-# Technologies
+## :sparkles: Introduction
+### :pushpin: Technologies
 
 - React.Js
 - Typescript
@@ -10,15 +9,15 @@
 - GraphQl
 - Postgres db
 
-# Getting Started
+## :sparkles: Getting Started
 
-## Install Docker and Docker compose
+### :pushpin: Install Docker and Docker compose
 
 :mega: Warning: You might need "sudo" to run docker commands.
 
 https://docs.docker.com/engine/install/ubuntu/ 
 
-## Running our app
+### :pushpin: Running our app
 
 If you want to get the app up, you can just run:
 
@@ -27,7 +26,7 @@ If you want to get the app up, you can just run:
 And visit [port 3000](http://localhost:3000) to see our application preview.
 
 If you want to change our application code base, we recommend you to follow the next steps:
-## Backend server and database
+### :pushpin: Backend server and database
 
 Open a terminal window.
 
@@ -41,7 +40,7 @@ Open a terminal window.
 
 :mega: To rebuild docker image, we can use `docker-compose up --build`
 
-## Build UI structure
+### :pushpin: Build UI structure
 
 Open a new terminal window.
 
@@ -67,7 +66,7 @@ This shortcut has also been set in our package.json file.
 
 4. That's it! Access [port 3000](http://localhost:3000)
 
-## Stop running current container
+### :pushpin: Stop running current container
 
 1. Check current running containers by following command:
 
