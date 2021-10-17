@@ -1,4 +1,17 @@
+- [Introduction](#sparkles-introduction)
+  - [About](#pushpin-about)
+  - [Technologies](#pushpin-technologies)
+- [Getting Started](#sparkles-getting-started)
+  - [Install docker](#pushpin-install-docker-and-docker-compose)
+  - [Running our app](#pushpin-running-our-app)
+    - [Backend server and database](#pushpin-backend-server-and-database)
+    - [Build UI structure](#pushpin-build-ui-structure)
+    - [Stop container](#pushpin-stop-running-current-container)
+
 ## :sparkles: Introduction
+
+### :pushpin: About
+
 ### :pushpin: Technologies
 
 - React.Js
