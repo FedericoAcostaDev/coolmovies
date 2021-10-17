@@ -9,20 +9,21 @@ interface CardProps {
   hideImage?: boolean
 }
 
-const Card: React.FC<CardProps> = ({ title, image, text, subtitle, hideImage}) => {
+const Card: React.FC<CardProps> = ({ children, title, image, text, subtitle, hideImage}) => {
   const isImageVisible = !hideImage;
 
   return (
     <CardContainer>
       <CardContent>
-        { isImageVisible && <CardImage src={image} /> }
+        {isImageVisible && <CardImage src={image} />}
         <CardTitle>
-          { title }
+          {title}
         </CardTitle>
-        { subtitle && <CardSubtitle> {subtitle} </CardSubtitle>}
+        {subtitle && <CardSubtitle> {subtitle} </CardSubtitle>}
         <CardText>
-          { text }
+          {text}
         </CardText>
+        {children}
       </CardContent>
     </CardContainer>
   )

@@ -12,12 +12,12 @@ const ReviewList: React.FC = () => {
   const { data } = useQuery(getReviews);
   const [reviews, setReviews] = useState([]);
   
-  const updateState = (data: ReviewListParam) => {
+  const updateReviewList = (data: ReviewListParam) => {
     const parsedData = parseReviewList(data);
     setReviews(parsedData);
   }
 
-  useEffect(() => { data && updateState(data) }, [data]);
+  useEffect(() => { data && updateReviewList(data) }, [data]);
 
   const renderReview = (review: ReviewData) => <h1>{review.title}</h1>;
 

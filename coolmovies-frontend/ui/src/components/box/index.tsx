@@ -10,7 +10,7 @@ const Box: React.FC<BoxProps> = ({ children, backgroundImage = '', withoutBackgr
   return (
     <BoxContainer background={backgroundImage} withoutBackground={withoutBackground}>
       <BoxContent>
-        { children }
+        {children}
       </BoxContent>
     </BoxContainer>
   )

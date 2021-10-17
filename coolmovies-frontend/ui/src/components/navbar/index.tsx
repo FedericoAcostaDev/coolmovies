@@ -16,25 +16,23 @@ const Navbar: React.FC<NavbarProps> = ({ Icon, title, items }) => {
 
   const renderLogo = () => (Icon || title) && (
     <Logo>
-      { renderIcon() }
-      { title }
+      {renderIcon()}
+      {title}
     </ Logo>
   );
 
-  const renderLinks: Function = () => items.map(({ name, path }) => (
-    <NavItem>
-      <NavLink to={ path }>
-        { name }
-      </ NavLink>
-    </NavItem>
-  ));
-
   return (
     <NavbarContainer>
-      { renderLogo() }
+      {renderLogo()}
       <Nav>
         <NavList>
-          { renderLinks() }
+          {items.map(({ name, path }) => (
+            <NavItem>
+              <NavLink to={path}>
+                {name}
+              </ NavLink>
+            </NavItem>
+          ))}
         </NavList>
       </Nav>
     </NavbarContainer>

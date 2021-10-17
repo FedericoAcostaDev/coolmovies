@@ -38,7 +38,7 @@ export const CardImage = styled.img.attrs({
 export const CardTitle = styled.h3`
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 `;
 
 export const CardSubtitle = styled.h4`
@@ -51,6 +51,7 @@ export const CardText = styled.p`
   font-size: 14px;
   color: #616161;
   margin-bottom: 20px;
+  line-height: 20px;
 `;
 
 export const CardFooter = styled.div`
