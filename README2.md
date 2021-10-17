@@ -14,11 +14,24 @@
 
 ## Install Docker and Docker compose
 
+:mega: Warning: You might need "sudo" to run docker commands.
+
 https://docs.docker.com/engine/install/ubuntu/ 
 
+## Running our app
+
+If you want to get the app up, you can just run:
+
+`docker-compose up`
+
+And visit [port 3000](http://localhost:3000) to see our application preview.
+
+If you want to change our application code base, we recommend you to follow the next steps:
 ## Backend server and database
 
-1. First we need to be at out backend directory path
+Open a terminal window.
+
+1. First we need to be at our backend's directory path
 
 `cd coolmovies-backend`
 
@@ -30,9 +43,9 @@ https://docs.docker.com/engine/install/ubuntu/
 
 ## Build UI structure
 
-:mega: Warning: You might need "sudo" to run docker commands.
+Open a new terminal window.
 
-1. First we need to be at our frontend directory path
+1. First we need to be at our frontend's directory path
 
 `cd coolmovies-frontend/ui`
 
@@ -40,13 +53,19 @@ https://docs.docker.com/engine/install/ubuntu/
 
 `docker build -t react-coolmovies:app .`
 
-3. So we can run our app. You can do this by the script `docker:run` set by our package.json file or by the original command:
+3. Now we're gonna tun that built image.
+
+3.1 If you want to use docker container **with** hotreload for local development, then use the shortcut:
+
+`docker:watch`
+
+This shortcut has also been set in our package.json file.
+
+3.2 Otherwise, to get the app up **without** hotreload, you can run the shortcut `docker:run` set by our package.json file or the original command: 
 
 `docker run -p 3000:3000 react-coolmovies:app`
 
 4. That's it! Access [port 3000](http://localhost:3000)
-
-:mega: If you want to use docker container with hotreload for local development, then use the shortcut `docker:watch` instead of step three command! This shortcut has also been set in our package.json file.
 
 ## Stop running current container
 
