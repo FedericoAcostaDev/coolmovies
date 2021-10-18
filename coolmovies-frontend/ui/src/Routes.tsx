@@ -1,6 +1,6 @@
 import Home from './pages/home';
 import Reviews from './pages/reviews';
-import MoviesList from './containers/movies_list';
+import Movies from './pages/movies';
 
 import { getReviews, getMovieReviewsByUser } from './sevices/queries/movie_reviews';
 import { listMovies } from './sevices/queries/movies';
@@ -23,7 +23,7 @@ const Routes: Function = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home}/>
-      <Route path="/all-movies" render={() => (<MoviesList gqlQuery={listMovies} />)}/>
+      <Route path="/all-movies" render={() => (<Movies gqlQuery={listMovies} />)}/>
       <Route path="/my-reviews" render={() => (<Reviews gqlQuery={getMovieReviewsByUser} params={{ id: currentUser?.id}} />)}/>
       <Route path="/all-reviews" render={() => (<Reviews gqlQuery={getReviews} />)}/>
     </Switch>

@@ -27,8 +27,8 @@ const App: React.FC = () => {
           <Navbar items={navItems} title="Coolmovies" Icon={BiMoviePlay} />
           <Routes />
         </Router>
-        <GlobalStyles />
       </CurrentUserProvider>
+      <GlobalStyles />
     </ApolloProvider>
   );
 }

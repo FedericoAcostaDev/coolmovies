@@ -10,10 +10,11 @@ import Card from '../../components/card';
 
 interface MoviesList {
   gqlQuery: any,
-  params?: any
+  params?: any,
+  width?: string
 }
 
-const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params }) => {
+const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params, width, children }) => {
   const { error, loading, data } = useQuery(gqlQuery, { variables: params });
   const [movies, setMovies] = useState<Array<MovieData>>([]);
 
@@ -28,7 +29,7 @@ const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params }) => {
   }, [data]);
 
   return (
-    <Container>
+    <Container width={width}>
       {movies && movies.map((movie, index) => (
         <Card
         key={index}
@@ -37,6 +38,7 @@ const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params }) => {
         subtitle={`Released: ${movie?.releaseDate}`}
         hideImage={true}
         >
+          {children}
         </Card>
       )
     )}

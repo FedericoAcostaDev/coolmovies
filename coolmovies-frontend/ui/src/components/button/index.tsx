@@ -2,20 +2,25 @@ import React from 'react';
 import { IconType } from 'react-icons';
 import { ButtonContainer, LinkContainer } from './styles';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonStyleProps {
   text: string,
+  theme?: ButtonStyleProps,
+  onClick?: () => void,
+  link?: string
+}
+
+export interface ButtonStyleProps {
   color?: `#${string}`,
   fontColor?: `#${string}`,
   border?: `${number}px ${string} #${string}`,
   radius?: `${number}px`,
   size?: 'sm' | 'md' | 'lg',
-  Icon?: IconType,
-  onClick?: () => void,
-  link?: string
+  Icon?: IconType
 }
 
-const Button: React.FC<ButtonProps> = ({ text, size = 'lg', border, radius, fontColor, link, onClick, color, Icon }) => {  
-  const renderIcon = () => Icon && <Icon />;
+const Button: React.FC<ButtonProps> = ({ text, size = 'lg', border, radius, fontColor, link, onClick, color, Icon, theme }) => {
+  const IconComponent = Icon || theme?.Icon
+  const renderIcon = () => IconComponent && <IconComponent />;
 
   const buttonWidth = {
     sm: 'auto',
@@ -23,15 +28,16 @@ const Button: React.FC<ButtonProps> = ({ text, size = 'lg', border, radius, font
     lg: '100%'
   };
 
-  const buttonSize = buttonWidth[size];
+  const sizeIndex = theme?.size || size;
+  const buttonSize = buttonWidth[sizeIndex];
 
   const instanceProps = {
     size: buttonSize,
     onClick: onClick,
-    border: border,
-    color: color,
-    radius: radius,
-    fontColor: fontColor
+    border: theme?.border || border,
+    color: theme?.color || color,
+    radius: theme?.radius || radius,
+    fontColor: theme?.fontColor || fontColor
   }
 
   return (

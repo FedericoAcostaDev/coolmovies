@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '../../components/box';
 import Button from '../../components/button';
 import Card from '../../components/card';
+
+import { useCurrentUserContext } from '../../sevices/context/user_auth';
 
 import { ButtonsBox } from './styles';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { FaListAlt } from 'react-icons/fa';
 
 interface HomeProps {
-  title: string,
+  title?: string,
   text: string,
   subtitle?: string
 }
 
 const Home: React.FC<HomeProps> = ({ title, text, subtitle }) => {
+  const { fetchUser, currentUser } = useCurrentUserContext();
+
+  useEffect(() => {
+    fetchUser()
+  }, [currentUser])
+
   const consoleLog = () => {
     console.log('oi')
   }
 
   return (
     <Box>
-      <Card title={title} text={text} subtitle={subtitle}>
+      <Card title={title || `Welcome back, ${currentUser?.name}!`} text={text} subtitle={subtitle}>
         <ButtonsBox>
           <Button
             text="Start a review"
@@ -44,7 +52,6 @@ const Home: React.FC<HomeProps> = ({ title, text, subtitle }) => {
 }
 
 Home.defaultProps = {
-  title: 'Welcome back!',
   text: "Have you been watching movies lately? Maybe it's time for you to share with us. Why don't you start writing a new review?",
   subtitle: "It's been a while!"
 }
