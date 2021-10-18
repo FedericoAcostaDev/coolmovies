@@ -33,7 +33,7 @@ export const CardImage = styled.img.attrs({
   border-radius: 50px;
   margin-bottom: 20px;
   padding: 5px;
-  background: linear-gradient(93deg, rgba(166,3,8,0.8883928571428571) 1%, rgba(69,26,214,1) 81%, rgba(130,78,79,1) 100%);
+  background: linear-gradient(93deg, #470825 1%, #E91B34 81%, #FF1400 100%);
 `;
 
 export const CardTitle = styled.h3`

@@ -18,9 +18,6 @@ export const getCurrentUserData = gql`
     currentUser {
       name
       id
-      commentsByUserId {
-        totalCount
-      }
     }
   }
 `;

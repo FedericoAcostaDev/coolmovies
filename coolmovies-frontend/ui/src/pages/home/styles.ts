@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Title = styled.h3`
-  font-size: 48px;
-  font-weight: bold;
-  color: #FFF;
-  margin-bottom: 12px;
+export const ButtonsBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;

@@ -5,11 +5,15 @@ export const getReviews = gql`
     allMovieReviews {
       edges {
         node {
-          id
           body
-          title
+          id
           rating
+          title
           userReviewerId
+          movieId
+          movieByMovieId {
+            title
+          }
         }
       }
     }
@@ -31,6 +35,30 @@ export const getMovieReviews = gql`
           title
           userReviewerId
           movieId
+          movieByMovieId {
+            title
+          }
+        }
+      }
+    }
+  }
+`
+export const getMovieReviewsByUser = gql`
+  query movieByUserQuery($id: UUID) {
+    allMovieReviews(condition: {
+      userReviewerId: $id
+    }) {
+      edges {
+        node {
+          body
+          id
+          rating
+          title
+          userReviewerId
+          movieId
+          movieByMovieId {
+            title
+          }
         }
       }
     }

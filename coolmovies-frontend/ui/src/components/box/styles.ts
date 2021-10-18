@@ -13,8 +13,8 @@ export const BoxContent = styled.section`
   text-align: center;
 `;
 
-export const BoxContainer = styled(Container)<{ background: string, withoutBackground: boolean }>`
-  background-image: linear-gradient(0deg, rgba(0,22,36,0.8883928571428571) 1%, rgba(78,78,130,0.1825105042016807) 34%, rgba(245,255,0,0.12088585434173671) 100%),
+export const BoxContainer = styled(Container)<{ background?: string, withoutBackground: boolean, gradient?: string }>`
+  background-image: ${({ gradient }) => gradient ? gradient : 'linear-gradient(0deg, rgba(2,0,36,0.6615021008403361) 0%, rgba(2,2,20,0.5172443977591037) 100%, rgba(0,212,255,0.22452731092436973) 100%)'},
     url(${({ background }) => background ? background : Bg});
   background-position: center;
   background-repeat: no-repeat;

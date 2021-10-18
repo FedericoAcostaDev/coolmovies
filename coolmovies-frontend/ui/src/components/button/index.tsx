@@ -36,16 +36,16 @@ const Button: React.FC<ButtonProps> = ({ text, size = 'lg', border, radius, font
 
   return (
     <>
-    { link ? 
-      <LinkContainer to={link} {...instanceProps}>
-        {renderIcon()}
-        {text}
-      </LinkContainer> : 
-      <ButtonContainer {...instanceProps}>
-        {renderIcon()}
-        {text}
-      </ButtonContainer>
-    }
+      {link ? 
+        <LinkContainer to={link} {...instanceProps}>
+          {renderIcon()}
+          {text}
+        </LinkContainer> : 
+        <ButtonContainer {...instanceProps}>
+          {renderIcon()}
+          {text}
+        </ButtonContainer>
+      }
     </>
   )
 }
