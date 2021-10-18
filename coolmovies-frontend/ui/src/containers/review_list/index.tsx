@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-
 import { useQuery } from '@apollo/client';
 
 import Card from '../../components/card';
@@ -20,7 +19,7 @@ interface ReviewList {
 }
 
 const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => {
-  const { data } = useQuery(gqlQuery, { variables: params });
+  const { error, data } = useQuery(gqlQuery, { variables: params });
   const [reviews, setReviews] = useState([]);
   
   const updateReviewList = (data: ReviewListParam) => {
@@ -28,7 +27,10 @@ const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => 
     setReviews(parsedData);
   }
 
-  useEffect(() => { data && updateReviewList(data) }, [data, currentUser]);
+  useEffect(() => { 
+    data && updateReviewList(data);
+    error && console.log(error);
+  }, [data, currentUser]);
 
   const cardSize = {
     maxWidth: '400px',

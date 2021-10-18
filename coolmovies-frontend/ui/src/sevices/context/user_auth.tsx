@@ -21,11 +21,12 @@ const UserAuthContext = createContext<UserDataContext>({
 });
 
 export const CurrentUserProvider: React.FunctionComponent = ({ children }) => {
-  const { data } = useQuery(getCurrentUserData);
+  const { error, data } = useQuery(getCurrentUserData);
   const [currentUser, setUser] = useState<UserData>( { id: '', name: '' });
   
   const fetchUser = () => {
-    setUser(data?.currentUser)
+    setUser(data?.currentUser);
+    error && console.log(error)
   };
 
   return (

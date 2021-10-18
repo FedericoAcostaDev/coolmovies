@@ -15,7 +15,7 @@ const Reviews: React.FC<ReviewPage> = (props) => {
   const { fetchUser, currentUser } = useCurrentUserContext();
 
   useEffect(() => {
-    fetchUser();
+    fetchUser()
   }, [currentUser])
 
   return (

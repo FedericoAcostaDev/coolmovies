@@ -1,20 +1,46 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { MovieData } from "./types";
+import { parseMovieList } from './utils';
 import { useQuery } from '@apollo/client';
-import { listMovies } from '../../sevices/queries/movies';
+import { useEffect, useState } from 'react';
 
-const MoviesList: React.FC = () => {
-  const { error, loading, data } = useQuery(listMovies);
-  const [movies, setMovies] = useState([]);
+import { FaSpinner } from 'react-icons/fa';
+import { Container } from './styles';
+import Card from '../../components/card';
 
-  useEffect(() => { data && setMovies(data.allMovies.edges) }, [data]);
+interface MoviesList {
+  gqlQuery: any,
+  params?: any
+}
 
-  console.log(movies)
+const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params }) => {
+  const { error, loading, data } = useQuery(gqlQuery, { variables: params });
+  const [movies, setMovies] = useState<Array<MovieData>>([]);
+
+  const updateMovieList = (data: MovieData) => {
+    const parsedData = parseMovieList(data);
+    setMovies(parsedData);
+  }
+
+  useEffect(() => { 
+    data && updateMovieList(data)
+    error && console.log(error)
+  }, [data]);
 
   return (
-    <div>
-      
-    </div>
+    <Container>
+      {movies && movies.map((movie, index) => (
+        <Card
+        key={index}
+        title={movie?.title}
+        text={`Directed by ${movie?.directorName} | Total Reviews: ${movie.reviewCount}`}
+        subtitle={`Released: ${movie?.releaseDate}`}
+        hideImage={true}
+        >
+        </Card>
+      )
+    )}
+    </Container>
   )
 }
 

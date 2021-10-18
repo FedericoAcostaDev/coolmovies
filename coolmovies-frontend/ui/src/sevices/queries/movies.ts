@@ -8,6 +8,12 @@ export const listMovies = gql`
           id
           title
           releaseDate
+          movieDirectorByMovieDirectorId {
+            name
+          }
+          movieReviewsByMovieId {
+            totalCount
+          }
         }
       }
     }

@@ -26,8 +26,8 @@ const Card: React.FC<CardProps> = ({ children, title, image, text, subtitle, hid
         {isImageVisible && <CardImage src={image} />}
         <CardTitle>
           {title}
+          {subtitle && <CardSubtitle> {subtitle} </CardSubtitle>}
         </CardTitle>
-        {subtitle && <CardSubtitle> {subtitle} </CardSubtitle>}
         <CardText>
           {text}
         </CardText>

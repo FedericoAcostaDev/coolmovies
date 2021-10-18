@@ -14,10 +14,13 @@ const ReviewForm: React.FC = () => {
   const [movieRating, setmovieRating] = useState("");
   const [currentUser, setCurrentUser] = useState("");
 
-  const { data } = useQuery<FetchCurrentUserData>(getCurrentUserData);
+  const { error, data } = useQuery<FetchCurrentUserData>(getCurrentUserData);
   const [createMovieReview] = useMutation<ReviewData>(setMovieReview);
 
-  useEffect(() => { data && setCurrentUser(data.currentUser.id) }, [data]);
+  useEffect(() => { 
+    data && setCurrentUser(data.currentUser.id);
+    error && console.log(error);
+  }, [data]);
 
   const createReview: Function = (params: ReviewData) => createMovieReview({ variables: params });
 
