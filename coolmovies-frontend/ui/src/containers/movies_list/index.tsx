@@ -4,7 +4,6 @@ import { parseMovieList } from './utils';
 import { useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
-import { FaSpinner } from 'react-icons/fa';
 import { Container } from './styles';
 import Card from '../../components/card';
 

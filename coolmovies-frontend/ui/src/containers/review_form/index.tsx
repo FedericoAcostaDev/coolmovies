@@ -2,17 +2,27 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
-import { getReviews, getMovieReviews, getMovieReviewsByUser } from '../../sevices/queries/movie_reviews';
+import { getReviews, getMovieReviews, getMovieReviewsByUser, getReviewById } from '../../sevices/queries/movie_reviews';
 
-import { Container } from './styles';
+import { Input, Label } from './styles';
 import { ReviewData } from './types';
+
+import Card from '../../components/card';
+import Button from '../../components/button';
 
 interface ReviewForm {
   gqlQuery: any,
+  review?: {
+    title: string,
+    movieId: string,
+    userReviewerId: string,
+    body: string,
+    rating: number
+  },
   id?: string
 }
 
-const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery }) => {
+const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
   const { currentUser } = useCurrentUserContext();
 
   const [name, setName] = useState("");
@@ -21,6 +31,8 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery }) => {
   const [movieRating, setmovieRating] = useState("");
 
   const [createMovieReview] = useMutation<ReviewData>(gqlQuery);
+
+  console.log(review)
 
   const createReview: Function = (data: ReviewData) => createMovieReview(
     { 
@@ -42,27 +54,33 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery }) => {
   });
 
   return (
-    <Container>
-      <input
+    <Card title="Review form" size={{ height: '100%', maxHeight: '550px' }} subtitle="Tell us what you think">
+      <Label>Title</Label>
+      <Input
         type="text"
+        value={review?.title}
         onChange={(e) => setName(e.target.value)} 
       />
-      <input
+      <Label>Movie id</Label>
+      <Input
         type="text"
+        value={review?.movieId}
         onChange={(e) => setMovieId(e.target.value)} 
       />
-      <input
+      <Label>Review</Label>
+      <Input
         type="text"
+        value={review?.body}
         onChange={(e) => setCommentary(e.target.value)} 
       />
-      <input
+      <Label>Rating</Label>
+      <Input
         type="text"
+        value={review?.rating}
         onChange={(e) => setmovieRating(e.target.value)} 
       />
-      <button onClick={sendReview}>
-        Enviar
-      </button>
-    </Container>
+      <Button text="Send" onClick={sendReview} />
+    </Card>
   )
 }
 

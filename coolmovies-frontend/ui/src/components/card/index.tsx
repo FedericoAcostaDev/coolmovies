@@ -28,9 +28,7 @@ const Card: React.FC<CardProps> = ({ children, title, image, text, subtitle, sho
           {title}
           {subtitle && <CardSubtitle> {subtitle} </CardSubtitle>}
         </CardTitle>
-        <CardText>
-          {text}
-        </CardText>
+        { text && <CardText>{text}</CardText> }
         {children}
       </CardContent>
     </CardContainer>

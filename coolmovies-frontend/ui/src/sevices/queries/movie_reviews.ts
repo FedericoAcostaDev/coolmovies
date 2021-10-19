@@ -44,7 +44,7 @@ export const getMovieReviews = gql`
   }
 `
 export const getMovieReviewsByUser = gql`
-  query movieByUserQuery($id: UUID) {
+  query movieByUserQuery($id: UUID!) {
     allMovieReviews(condition: {
       userReviewerId: $id
     }) {
@@ -61,6 +61,17 @@ export const getMovieReviewsByUser = gql`
           }
         }
       }
+    }
+  }
+`
+
+export const getReviewById = gql`
+  query($id: UUID!) {
+    movieReviewById(id: $id) {
+      title
+      movieId
+      rating
+      body
     }
   }
 `
