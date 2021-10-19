@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { setMovieReview } from '../../sevices/mutations/movie_review';
 import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
+import { getReviews, getMovieReviews, getMovieReviewsByUser } from '../../sevices/queries/movie_reviews';
 
 import { Container } from './styles';
 import { ReviewData } from './types';
@@ -22,7 +22,15 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery }) => {
 
   const [createMovieReview] = useMutation<ReviewData>(gqlQuery);
 
-  const createReview: Function = (data: ReviewData) => createMovieReview({ variables: data });
+  const createReview: Function = (data: ReviewData) => createMovieReview(
+    { 
+      variables: data,
+      refetchQueries: [
+        { query: getMovieReviews },
+        { query: getReviews },
+        { query: getMovieReviewsByUser }
+      ]
+    });
 
   const sendReview = () => createReview({
     title: name,
