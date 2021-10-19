@@ -1,35 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 
 import { setMovieReview } from '../../sevices/mutations/movie_review';
-import { getCurrentUserData } from '../../sevices/queries/users';
+import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
 
 import { Container } from './styles';
-import { ReviewData, FetchCurrentUserData } from './types';
+import { ReviewData } from './types';
 
-const ReviewForm: React.FC = () => {
+interface ReviewForm {
+  gqlQuery: any,
+  id?: string
+}
+
+const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery }) => {
+  const { currentUser } = useCurrentUserContext();
+
   const [name, setName] = useState("");
   const [movieId, setMovieId] = useState("");
   const [commentary, setCommentary] = useState("");
   const [movieRating, setmovieRating] = useState("");
-  const [currentUser, setCurrentUser] = useState("");
 
-  const { error, data } = useQuery<FetchCurrentUserData>(getCurrentUserData);
-  const [createMovieReview] = useMutation<ReviewData>(setMovieReview);
+  const [createMovieReview] = useMutation<ReviewData>(gqlQuery);
 
-  useEffect(() => { 
-    data && setCurrentUser(data.currentUser.id);
-    error && console.log(error);
-  }, [data]);
-
-  const createReview: Function = (params: ReviewData) => createMovieReview({ variables: params });
+  const createReview: Function = (data: ReviewData) => createMovieReview({ variables: data });
 
   const sendReview = () => createReview({
     title: name,
     movieId: movieId,
-    userReviewerId: currentUser,
+    userReviewerId: currentUser?.id,
     body: commentary,
-    rating: Number(movieRating)
+    rating: Number(movieRating), 
+    id
   });
 
   return (

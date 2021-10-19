@@ -18,17 +18,13 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ title, text, subtitle }) => {
   const { currentUser } = useCurrentUserContext();
 
-  const consoleLog = () => {
-    console.log('oi')
-  }
-
   return (
     <Box>
       <Card title={title || `Welcome back, ${currentUser?.name}!`} text={text} subtitle={subtitle} showImage={true}>
         <ButtonsBox>
           <Button
             text="Start a review"
-            link="/review"
+            link="/new-review"
             Icon={BsFillPencilFill}
             color="#2ECC68"
             border="2px solid #00B242"
@@ -37,7 +33,6 @@ const Home: React.FC<HomeProps> = ({ title, text, subtitle }) => {
             text="All reviews"
             link="/all-reviews"
             Icon={FaListAlt}
-            onClick={consoleLog}
             color="#8B1044"
             border="2px solid #6C0E39"
           />

@@ -31,14 +31,14 @@ export const updateMovieReview = gql`
     $title: String!
     $rating: Int
   ) {
-    updateMovieReview(
+    updateMovieReviewById(
       input: {
-        nodeId: $id,
         movieReviewPatch: {
+          body: $body
           rating: $rating
           title: $title
-          body: $body
-        }
+        },
+        id: $id
       }
     ) {
       clientMutationId

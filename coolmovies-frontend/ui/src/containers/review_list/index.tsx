@@ -51,7 +51,7 @@ const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => 
       text={review.body}
       size={cardSize}
     >
-      {canUserEditReview(review.userReviewerId) && <Button text="Editar review" size="sm" />}
+      {canUserEditReview(review.userReviewerId) && <Button text="Edit review" size="sm" link={`/edit-review/${review.id}`} />}
     </Card>
   );
 

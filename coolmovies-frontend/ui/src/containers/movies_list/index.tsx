@@ -15,7 +15,7 @@ interface MoviesList {
 }
 
 const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params, width, children }) => {
-  const { error, loading, data } = useQuery(gqlQuery, { variables: params });
+  const { error, data } = useQuery(gqlQuery, { variables: params });
   const [movies, setMovies] = useState<Array<MovieData>>([]);
 
   const updateMovieList = (data: MovieData) => {
