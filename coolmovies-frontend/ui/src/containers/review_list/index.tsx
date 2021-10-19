@@ -49,7 +49,6 @@ const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => 
       title={review.title}
       subtitle={`${review.movieTitle} | Rating: ${review.rating}`}
       text={review.body}
-      hideImage={true}
       size={cardSize}
     >
       {canUserEditReview(review.userReviewerId) && <Button text="Editar review" size="sm" />}

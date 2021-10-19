@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { useQuery } from '@apollo/client';
 import { getCurrentUserData } from '../queries/users';
 
@@ -28,6 +28,10 @@ export const CurrentUserProvider: React.FunctionComponent = ({ children }) => {
     setUser(data?.currentUser);
     error && console.log(error)
   };
+
+  useEffect(() => {
+    fetchUser();
+  }, [data]);
 
   return (
     <UserAuthContext.Provider value={{

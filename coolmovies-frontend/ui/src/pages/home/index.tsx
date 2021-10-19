@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Box from '../../components/box';
 import Button from '../../components/button';
 import Card from '../../components/card';
 
-import { useCurrentUserContext } from '../../sevices/context/user_auth';
+import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
 
 import { ButtonsBox } from './styles';
 import { BsFillPencilFill } from 'react-icons/bs';
@@ -16,11 +16,7 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ title, text, subtitle }) => {
-  const { fetchUser, currentUser } = useCurrentUserContext();
-
-  useEffect(() => {
-    fetchUser()
-  }, [currentUser])
+  const { currentUser } = useCurrentUserContext();
 
   const consoleLog = () => {
     console.log('oi')
@@ -28,7 +24,7 @@ const Home: React.FC<HomeProps> = ({ title, text, subtitle }) => {
 
   return (
     <Box>
-      <Card title={title || `Welcome back, ${currentUser?.name}!`} text={text} subtitle={subtitle}>
+      <Card title={title || `Welcome back, ${currentUser?.name}!`} text={text} subtitle={subtitle} showImage={true}>
         <ButtonsBox>
           <Button
             text="Start a review"

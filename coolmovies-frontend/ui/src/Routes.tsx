@@ -2,11 +2,9 @@ import Home from './pages/home';
 import Reviews from './pages/reviews';
 import Movies from './pages/movies';
 
-import { getReviews, getMovieReviewsByUser } from './sevices/queries/movie_reviews';
 import { listMovies } from './sevices/queries/movies';
-
-import { useEffect } from 'react';
-import { useCurrentUserContext } from './sevices/context/user_auth';
+import { useCurrentUserContext } from './sevices/hooks/user_auth';
+import { getReviews, getMovieReviewsByUser } from './sevices/queries/movie_reviews';
 
 import {
   Switch,
@@ -14,11 +12,7 @@ import {
 } from "react-router-dom";
 
 const Routes: Function = () => {
-  const { fetchUser, currentUser } = useCurrentUserContext();
-
-  useEffect(() => {
-    fetchUser();
-  }, [currentUser])
+  const { currentUser } = useCurrentUserContext();
 
   return (
     <Switch>

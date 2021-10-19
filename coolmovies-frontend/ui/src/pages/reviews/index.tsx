@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BgImg from '../../images/popcorn.jpg';
 
 import Box from '../../components/box';
 import ReviewList from '../../containers/review_list';
 
-import { useCurrentUserContext } from '../../sevices/context/user_auth';
+import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
 
 interface ReviewPage {
   gqlQuery: any,
@@ -12,11 +12,7 @@ interface ReviewPage {
 }
 
 const Reviews: React.FC<ReviewPage> = (props) => {
-  const { fetchUser, currentUser } = useCurrentUserContext();
-
-  useEffect(() => {
-    fetchUser()
-  }, [currentUser])
+  const { currentUser } = useCurrentUserContext();
 
   return (
     <Box backgroundImage={BgImg}>

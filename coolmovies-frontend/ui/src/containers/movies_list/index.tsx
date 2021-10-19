@@ -36,7 +36,6 @@ const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params, width, children })
         title={movie?.title}
         text={`Directed by ${movie?.directorName} | Total Reviews: ${movie.reviewCount}`}
         subtitle={`Released: ${movie?.releaseDate}`}
-        hideImage={true}
         >
           {children}
         </Card>
