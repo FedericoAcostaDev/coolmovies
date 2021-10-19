@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 
 import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
@@ -28,11 +28,18 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
   const [name, setName] = useState("");
   const [movieId, setMovieId] = useState("");
   const [commentary, setCommentary] = useState("");
-  const [movieRating, setmovieRating] = useState("");
+  const [movieRating, setmovieRating] = useState<number>();
+
+  useEffect(() => { 
+   if(review){
+      setName(review?.title);
+      setMovieId(review?.movieId);
+      setCommentary(review?.body);
+      setmovieRating(review?.rating);
+   } 
+  });
 
   const [createMovieReview] = useMutation<ReviewData>(gqlQuery);
-
-  console.log(review)
 
   const createReview: Function = (data: ReviewData) => createMovieReview(
     { 
@@ -58,26 +65,22 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
       <Label>Title</Label>
       <Input
         type="text"
-        value={review?.title}
         onChange={(e) => setName(e.target.value)} 
       />
       <Label>Movie id</Label>
       <Input
         type="text"
-        value={review?.movieId}
         onChange={(e) => setMovieId(e.target.value)} 
       />
       <Label>Review</Label>
       <Input
         type="text"
-        value={review?.body}
         onChange={(e) => setCommentary(e.target.value)} 
       />
       <Label>Rating</Label>
       <Input
-        type="text"
-        value={review?.rating}
-        onChange={(e) => setmovieRating(e.target.value)} 
+        type="number"
+        onChange={(e) => setmovieRating(Number(e.target.value))} 
       />
       <Button text="Send" onClick={sendReview} />
     </Card>
