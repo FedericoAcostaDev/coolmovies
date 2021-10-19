@@ -16,8 +16,7 @@ const App: React.FC = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Movies', path: '/all-movies' },
-    { name: 'My Reviews', path: '/my-reviews' },
-    { name: 'About', path: '/' }
+    { name: 'My Reviews', path: '/my-reviews' }
   ];
 
   return (

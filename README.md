@@ -4,11 +4,14 @@
 - [Getting Started](#sparkles-getting-started)
   - [Install docker](#pushpin-install-docker-and-docker-compose)
   - [Running our app](#pushpin-running-our-app)
-    - [Backend server and database](#pushpin-backend-server-and-database)
-    - [Build UI structure](#pushpin-build-ui-structure)
-    - [Stop container](#pushpin-stop-running-current-container)
+    - [Run it all](#pushpin-running-our-app)
+    - [Only backend server and database](#pushpin-backend-server-and-database)
+    - [Only build UI structure](#pushpin-build-ui-structure)
+    - [Stop containers](#pushpin-stop-running-current-container)
 
 # :sparkles: Introduction
+
+This is my first project using GraphQL, Apollo and Typescript. I'm also not used to react, but 'ive already tried to built some basic apps with it, when I was first studying javascript a year ago.
 
 ## :pushpin: About
 
@@ -39,6 +42,7 @@ If you want to get the app up, you can just run:
 And visit [port 3000](http://localhost:3000) to see our application preview.
 
 If you want to change our application code base, we recommend you to follow the next steps:
+
 ### :pushpin: Backend server and database
 
 Open a terminal window.

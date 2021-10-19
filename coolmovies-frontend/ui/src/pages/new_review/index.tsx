@@ -8,7 +8,8 @@ import { useParams } from 'react-router';
 import Box from '../../components/box';
 import ReviewForm from '../../containers/review_form';
 interface NewReviewPage {
-  gqlQuery: any
+  gqlQuery: any,
+  id?: string
 }
 
 interface ReviewData {
@@ -21,18 +22,17 @@ interface ReviewData {
   }
 }
 
-
 const NewReview: React.FC<NewReviewPage> = (props) => {
   const { id } = useParams<{ id?: string }>();
   const [reviewData, setReviewData] = useState<ReviewData>();
-  const { error, data } = useQuery(getReviewById, { variables: { id: id } });
+  const { error, loading, data } = useQuery(getReviewById, { variables: { id: id } });
 
   useEffect(() => {
-    if(id) {
+    if(id && !loading) {
       data && setReviewData(data);
       error && console.log(error);
     }
-  }, [id, reviewData])
+  }, [data])
 
   return (
     <Box backgroundImage={BgImg}>

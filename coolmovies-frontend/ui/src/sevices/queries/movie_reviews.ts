@@ -21,7 +21,7 @@ export const getReviews = gql`
 `
 
 export const getMovieReviews = gql`
-  query movieQuery($id: String!) {
+  query movieQuery($id: UUID!) {
     allMovieReviews(
       condition: {
         id: $id

@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 
-const getErrorsLogs = (errorsArray: any) => errorsArray.map(({ message } : { message: any }) => console.log(message));
+const getErrorsLogs = (errorsArray: any) => errorsArray.map(({ message, ...rest } : { message: any }) => console.log(message));
 
 const errorLink = onError(({ graphQLErrors, networkError }) => graphQLErrors ? getErrorsLogs(graphQLErrors) : alert(networkError));
 
@@ -12,5 +12,15 @@ const httpLink = from([
 
 export const client = new ApolloClient({
   link: httpLink,
-  cache: new InMemoryCache()
-}); 
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    }
+  }
+});

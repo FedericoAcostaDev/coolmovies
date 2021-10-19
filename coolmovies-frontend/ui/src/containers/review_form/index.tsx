@@ -28,30 +28,28 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
   const [name, setName] = useState("");
   const [movieId, setMovieId] = useState("");
   const [commentary, setCommentary] = useState("");
-  const [movieRating, setmovieRating] = useState<number>();
+  const [movieRating, setmovieRating] = useState<number>(0);
 
-  useEffect(() => { 
-   if(review){
+  const [createMovieReview] = useMutation<ReviewData>(gqlQuery);
+
+  useEffect(() => {
+    if(review){
       setName(review?.title);
       setMovieId(review?.movieId);
       setCommentary(review?.body);
       setmovieRating(review?.rating);
-   } 
-  });
-
-  const [createMovieReview] = useMutation<ReviewData>(gqlQuery);
+    }
+  }, [review])
 
   const createReview: Function = (data: ReviewData) => createMovieReview(
     { 
       variables: data,
       refetchQueries: [
-        { query: getMovieReviews },
-        { query: getReviews },
-        { query: getMovieReviewsByUser }
+        { query: getReviews }
       ]
     });
 
-  const sendReview = () => createReview({
+  const sendReview = () => (id || movieId) && createReview({
     title: name,
     movieId: movieId,
     userReviewerId: currentUser?.id,
@@ -61,25 +59,32 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
   });
 
   return (
-    <Card title="Review form" size={{ height: '100%', maxHeight: '550px' }} subtitle="Tell us what you think">
+    <Card title="Review form" size={{ height: '100%', maxHeight: '450px' }} subtitle="Tell us what you think">
       <Label>Title</Label>
       <Input
         type="text"
+        defaultValue={review?.title}
         onChange={(e) => setName(e.target.value)} 
       />
-      <Label>Movie id</Label>
-      <Input
-        type="text"
-        onChange={(e) => setMovieId(e.target.value)} 
-      />
+      {!review?.movieId && 
+        (<>
+          <Label>Movie id</Label>
+          <Input
+            type="text"
+            onChange={(e) => setMovieId(e.target.value)} 
+          />
+        </>)
+      }
       <Label>Review</Label>
       <Input
         type="text"
+        defaultValue={review?.body}
         onChange={(e) => setCommentary(e.target.value)} 
       />
       <Label>Rating</Label>
       <Input
         type="number"
+        defaultValue={Number(review?.rating) || 0}
         onChange={(e) => setmovieRating(Number(e.target.value))} 
       />
       <Button text="Send" onClick={sendReview} />

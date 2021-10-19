@@ -3,7 +3,8 @@ export interface ReviewData {
   movieId: string,
   userReviewerId: string,
   body: string,
-  rating: number
+  rating: number,
+  id: string
 }
 
 export interface CurrentUserData {
