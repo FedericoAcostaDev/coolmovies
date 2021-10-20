@@ -62,7 +62,7 @@ export const Logo = styled.div`
   transition: all .2s ease;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 24px;
   color: #fff;
   font-family: Bebas Neue, sans-serif;
 
