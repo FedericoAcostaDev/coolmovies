@@ -1,6 +1,7 @@
 - [Introduction](#sparkles-introduction)
   - [About](#pushpin-about)
   - [Technologies](#pushpin-technologies)
+  - [Features](#pushpin-features)
 - [Getting Started](#sparkles-getting-started)
   - [Install docker](#pushpin-install-docker-and-docker-compose)
   - [Running our app](#pushpin-running-our-app)
@@ -13,7 +14,7 @@
 
 Coolmovies is an app where you can share your ideas about... Movies. Here you can read other people's reviews and also post your own. You are allowed to changed your mind so be free to edit whatever you've said before.
 
-This was my first project using Docker, GraphQL, Apollo and Typescript. I'm not used to coding with React so far, but I've already tried to built some basic apps with it when I was first studying javascript.
+Coolmovies is also an CRUD app which was my first project using Docker, GraphQL, Apollo and Typescript. I'm not used to coding with React so far, but I've already tried to built some basic apps with it when I was first studying javascript.
 
 ## :pushpin: Technologies
 
@@ -24,6 +25,14 @@ This was my first project using Docker, GraphQL, Apollo and Typescript. I'm not 
 - Apollo Client
 - GraphQl
 - Postgres db
+
+## :pushpin: Features
+
+- [x] List all reviews
+- [x] List each movie's reviews
+- [x] Update user's reviews
+- [x] Delete reviews
+- [ ] Login
 
 # :sparkles: Getting Started
 
