@@ -6,27 +6,14 @@ import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
 import { getReviews } from '../../sevices/queries/movie_reviews';
 
 import { Input, Label } from './styles';
-import { ReviewData } from './types';
+import { ReviewData, ReviewFormType } from './types';
 
 import Card from '../../components/card';
 import Button from '../../components/button';
 
-interface ReviewForm {
-  gqlQuery: any,
-  review?: {
-    title: string,
-    movieId: string,
-    userReviewerId: string,
-    body: string,
-    rating: number
-  },
-  id?: string,
-  movie?: string
-}
-
-const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review, movie }) => {
+const ReviewForm: React.FC<ReviewFormType> = ({ id, gqlQuery, review, movie }) => {
   const { currentUser } = useCurrentUserContext();
-  const { history } = useRouter();
+  const { push } = useRouter();
 
   const [name, setName] = useState("");
   const [movieId, setMovieId] = useState("");
@@ -48,7 +35,7 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review, movie }) => {
 
   const createReview: Function = async (data: ReviewData) => {
     await createMovieReview({ variables: data, refetchQueries: [{ query: getReviews }]});
-    history.push('/my-reviews');
+    push('/my-reviews');
   };
 
   const sendReview = () => (id || movieId) && createReview({

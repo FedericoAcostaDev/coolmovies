@@ -7,19 +7,11 @@ import Button from '../../components/button';
 
 import { parseReviewList } from './utils';
 import { Container, ButtonsBox } from './styles';
-import { ReviewListParam, ReviewData } from './types';
+import { ReviewListParam, ReviewData, ReviewListTypes } from './types';
 import { deleteMovieReview } from '../../sevices/mutations/movie_review';
 
-interface ReviewList {
-  gqlQuery: any,
-  params?: any,
-  currentUser?: {
-    id: string,
-    name: string
-  }
-}
 
-const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => {
+const ReviewList: React.FC<ReviewListTypes> = ({ gqlQuery, params, currentUser }) => {
   const { error, data, refetch } = useQuery(gqlQuery, { variables: params });
   const [reviews, setReviews] = useState([]);
   const [deleteReview] = useMutation<ReviewData>(deleteMovieReview);

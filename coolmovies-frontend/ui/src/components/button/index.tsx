@@ -47,7 +47,7 @@ const Button: React.FC<ButtonProps> = ({ text, size = 'lg', border, radius, font
           {renderIcon()}
           {text}
         </LinkContainer> : 
-        <ButtonContainer {...instanceProps}>
+        <ButtonContainer data-testid="button-global" {...instanceProps}>
           {renderIcon()}
           {text}
         </ButtonContainer>

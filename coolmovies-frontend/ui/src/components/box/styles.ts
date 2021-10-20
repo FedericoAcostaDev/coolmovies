@@ -22,7 +22,7 @@ export const BoxContainer = styled(Container)<{ background?: string, withoutBack
   height: 100vh;
   width: 100%;
   padding: 0;
-  margin-top: -70px;
+  margin-top: -60px;
 
   ${({ withoutBackground }) => withoutBackground && css`background: transparent`};
 `;

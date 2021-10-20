@@ -1,3 +1,10 @@
+
+export interface MoviesListTypes {
+  gqlQuery: any,
+  params?: any,
+  width?: string
+}
+
 export interface MovieData {
   id: string,
   releaseDate: string,

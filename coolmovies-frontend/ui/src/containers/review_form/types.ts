@@ -1,3 +1,15 @@
+export interface ReviewFormType {
+  gqlQuery: any,
+  review?: {
+    title: string,
+    movieId: string,
+    userReviewerId: string,
+    body: string,
+    rating: number
+  },
+  id?: string,
+  movie?: string
+}
 export interface ReviewData {
   title: string,
   movieId: string,

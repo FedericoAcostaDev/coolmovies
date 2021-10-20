@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container } from '../../GlobalStyles';
 
 export const NavbarContainer = styled(Container)`
-  height: 70px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +16,7 @@ export const NavbarContainer = styled(Container)`
 `;
 
 export const Nav = styled.nav`
-  height: 70px;
+  height: 60px;
   display: flex;
   align-items: center;
   font-size: 16px;
@@ -41,8 +41,12 @@ export const NavLink = styled(Link)`
   transition: all .2s ease;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
+
+  @media (min-width: 475px){
+    font-size: 16px;
+  }
 
   &:hover {
     color: #E38B06;
@@ -62,9 +66,13 @@ export const Logo = styled.div`
   transition: all .2s ease;
   text-decoration: none;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   color: #fff;
   font-family: Bebas Neue, sans-serif;
+
+  @media (min-width: 475px){
+    font-size: 24px;
+  }
 
   svg {
     margin-right: 10px;
