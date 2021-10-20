@@ -45,3 +45,17 @@ export const updateMovieReview = gql`
     }
   }
 `
+
+export const deleteMovieReview = gql`
+  mutation deleteReview(
+    $id: UUID!
+    ) {
+    deleteMovieReviewById(
+      input: {
+        id: $id
+      }
+      ) {
+      clientMutationId
+    }
+  }
+`

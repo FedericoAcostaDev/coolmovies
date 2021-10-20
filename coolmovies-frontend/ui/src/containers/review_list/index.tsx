@@ -1,13 +1,14 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import Card from '../../components/card';
 import Button from '../../components/button';
 
 import { parseReviewList } from './utils';
-import { Container } from './styles';
+import { Container, ButtonsBox } from './styles';
 import { ReviewListParam, ReviewData } from './types';
+import { deleteMovieReview } from '../../sevices/mutations/movie_review';
 
 interface ReviewList {
   gqlQuery: any,
@@ -20,17 +21,18 @@ interface ReviewList {
 
 const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => {
   const { error, data } = useQuery(gqlQuery, { variables: params });
+  const [deleteReview] = useMutation<ReviewData>(deleteMovieReview);
+
+  const deleteCurrentReview = (param: string) => deleteReview({ variables: { id: param }});
+
   const [reviews, setReviews] = useState([]);
-  
+
   const updateReviewList = (data: ReviewListParam) => {
     const parsedData = parseReviewList(data);
     setReviews(parsedData);
   }
 
-  console.log(params)
-
   useEffect(() => {
-    console.log(data)
     data && updateReviewList(data);
     error && console.log(error);
   }, [data, currentUser]);
@@ -46,21 +48,26 @@ const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => 
     return id === currentUser?.id
   }
 
-  const renderReview = (review: ReviewData, index: number) => (
-    <Card
-      key={index}
-      title={review.title}
-      subtitle={`${review.movieTitle} | Rating: ${review.rating}`}
-      text={review.body}
-      size={cardSize}
-    >
-      {canUserEditReview(review.userReviewerId) && <Button text="Edit review" size="sm" link={`/edit-review/${review.id}`} />}
-    </Card>
-  );
+  const renderOwnerButtons = (review: ReviewData) => (
+    <ButtonsBox>
+      <Button text="Edit" size="md" link={`/edit-review/${review.id}`} />
+      <Button text="Delete" size="md" color="#b22222" border="1px solid #b22222" onClick={() => deleteCurrentReview(review.id)} />
+    </ButtonsBox>
+  )
 
   return (
     <Container>
-      {reviews && reviews.map((review, index) => renderReview(review, index))}
+      {reviews && reviews.map((review: ReviewData, index: number) => 
+        <Card
+        key={index}
+        title={review.title}
+        subtitle={`${review.movieTitle} | Rating: ${review.rating}`}
+        text={review.body}
+        size={cardSize}
+        >
+        {canUserEditReview(review.userReviewerId) && renderOwnerButtons(review)}
+        </Card>
+      )}
     </Container>
   )
 }
