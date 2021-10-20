@@ -41,7 +41,7 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review, movie }) => {
       setmovieRating(review?.rating);
     };
 
-    movie && setMovieId(movieId)
+    movie && setMovieId(movie)
   }, [review, movie])
 
   const createReview: Function = (data: ReviewData) => createMovieReview(
