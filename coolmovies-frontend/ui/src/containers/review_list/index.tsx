@@ -20,10 +20,13 @@ interface ReviewList {
 }
 
 const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => {
-  const { error, data } = useQuery(gqlQuery, { variables: params });
+  const { error, data, refetch } = useQuery(gqlQuery, { variables: params });
   const [deleteReview] = useMutation<ReviewData>(deleteMovieReview);
 
-  const deleteCurrentReview = (param: string) => deleteReview({ variables: { id: param }});
+  const deleteCurrentReview = (param: string) => {
+    deleteReview({ variables: { id: param }});
+    refetch();
+  };
 
   const [reviews, setReviews] = useState([]);
 
@@ -65,7 +68,7 @@ const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => 
         text={review.body}
         size={cardSize}
         >
-        {canUserEditReview(review.userReviewerId) && renderOwnerButtons(review)}
+          {canUserEditReview(review.userReviewerId) && renderOwnerButtons(review)}
         </Card>
       )}
     </Container>

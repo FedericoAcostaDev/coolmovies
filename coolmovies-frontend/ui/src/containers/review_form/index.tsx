@@ -44,13 +44,7 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review, movie }) => {
     movie && setMovieId(movie)
   }, [review, movie])
 
-  const createReview: Function = (data: ReviewData) => createMovieReview(
-    { 
-      variables: data,
-      refetchQueries: [
-        { query: getReviews }
-      ]
-    });
+  const createReview: Function = (data: ReviewData) => createMovieReview({ variables: data, refetchQueries: [{ query: getReviews }]});
 
   const sendReview = () => (id || movieId) && createReview({
     title: name,

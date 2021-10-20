@@ -25,11 +25,7 @@ const NewReview: React.FC<NewReviewPage> = ({ gqlQuery }) => {
   const { id, movieId } = useParams<{ id?: string, movieId?: string }>();
   const [reviewData, setReviewData] = useState<ReviewData>();
   
-  const { error, loading, data } = useQuery(getReviewById, 
-    { 
-      variables: { id: id },
-      skip: !id
-   });
+  const { error, loading, data } = useQuery(getReviewById, { variables: { id: id }, skip: !id });
 
   useEffect(() => {
     if(!loading) {
