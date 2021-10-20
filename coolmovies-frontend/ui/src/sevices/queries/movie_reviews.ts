@@ -24,7 +24,7 @@ export const getMovieReviews = gql`
   query ($id: UUID!) {
     allMovieReviews(
       condition: {
-        id: $id
+        movieId: $id
       }
     ) {
       edges {

@@ -37,7 +37,7 @@ const Button: React.FC<ButtonProps> = ({ text, size = 'lg', border, radius, font
     border: theme?.border || border,
     color: theme?.color || color,
     radius: theme?.radius || radius,
-    fontColor: theme?.fontColor || fontColor
+    fontcolor: theme?.fontColor || fontColor
   }
 
   return (

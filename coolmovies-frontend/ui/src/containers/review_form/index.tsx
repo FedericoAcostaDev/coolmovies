@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 
 import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
-import { getReviews, getMovieReviews, getMovieReviewsByUser, getReviewById } from '../../sevices/queries/movie_reviews';
+import { getReviews } from '../../sevices/queries/movie_reviews';
 
 import { Input, Label } from './styles';
 import { ReviewData } from './types';
@@ -19,10 +19,11 @@ interface ReviewForm {
     body: string,
     rating: number
   },
-  id?: string
+  id?: string,
+  movie?: string
 }
 
-const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
+const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review, movie }) => {
   const { currentUser } = useCurrentUserContext();
 
   const [name, setName] = useState("");
@@ -38,8 +39,10 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
       setMovieId(review?.movieId);
       setCommentary(review?.body);
       setmovieRating(review?.rating);
-    }
-  }, [review])
+    };
+
+    movie && setMovieId(movieId)
+  }, [review, movie])
 
   const createReview: Function = (data: ReviewData) => createMovieReview(
     { 
@@ -59,11 +62,11 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
   });
 
   return (
-    <Card title="Review form" size={{ height: '100%', maxHeight: '450px' }} subtitle="Tell us what you think">
+    <Card title="Review form" size={{ height: '100%', maxHeight: '500px' }} subtitle="Tell us what you think">
       <Label>Title</Label>
       <Input
         type="text"
-        defaultValue={review?.title}
+        defaultValue={name}
         onChange={(e) => setName(e.target.value)} 
       />
       {!review?.movieId && 
@@ -71,6 +74,7 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
           <Label>Movie id</Label>
           <Input
             type="text"
+            defaultValue={movieId}
             onChange={(e) => setMovieId(e.target.value)} 
           />
         </>)
@@ -78,13 +82,13 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review }) => {
       <Label>Review</Label>
       <Input
         type="text"
-        defaultValue={review?.body}
+        defaultValue={commentary}
         onChange={(e) => setCommentary(e.target.value)} 
       />
       <Label>Rating</Label>
       <Input
         type="number"
-        defaultValue={Number(review?.rating) || 0}
+        defaultValue={Number(movieRating) || 0}
         onChange={(e) => setmovieRating(Number(e.target.value))} 
       />
       <Button text="Send" onClick={sendReview} />

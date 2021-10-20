@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
-export const ButtonContainer = styled.button<{ border?: string, color?: string, size?: string, radius?: string, fontColor?: string }>`
+export const ButtonContainer = styled.button<{ border?: string, color?: string, size?: string, radius?: string, fontcolor?: string }>`
   background-color: ${({ color }) => color};
   padding: 10px 12px;
-  color: ${({ fontColor }) => fontColor};
+  color: ${({ fontcolor }) => fontcolor};
   width: ${({ size }) => size};
   outline: none;
   cursor: pointer;
@@ -25,10 +25,10 @@ export const ButtonContainer = styled.button<{ border?: string, color?: string, 
   }
 `;
 
-export const LinkContainer = styled(Link)<{ border?: string, color?: string, size?: string, radius?: string, fontColor?: string }>`
+export const LinkContainer = styled(Link)<{ border?: string, color?: string, size?: string, radius?: string, fontcolor?: string }>`
   background-color: ${({ color }) => color};
   padding: 10px 12px;
-  color: ${({ fontColor }) => fontColor};
+  color: ${({ fontcolor }) => fontcolor};
   width: ${({ size }) => size};
   outline: none;
   cursor: pointer;

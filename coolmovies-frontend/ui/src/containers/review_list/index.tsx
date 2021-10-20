@@ -27,7 +27,10 @@ const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => 
     setReviews(parsedData);
   }
 
-  useEffect(() => { 
+  console.log(params)
+
+  useEffect(() => {
+    console.log(data)
     data && updateReviewList(data);
     error && console.log(error);
   }, [data, currentUser]);

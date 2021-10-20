@@ -5,7 +5,7 @@ import NewReviews from './pages/new_review';
 
 import { listMovies } from './sevices/queries/movies';
 import { useCurrentUserContext } from './sevices/hooks/user_auth';
-import { getReviews, getMovieReviewsByUser } from './sevices/queries/movie_reviews';
+import { getReviews, getMovieReviews, getMovieReviewsByUser } from './sevices/queries/movie_reviews';
 import { setMovieReview, updateMovieReview } from './sevices/mutations/movie_review';
 
 import {
@@ -20,10 +20,14 @@ const Routes: Function = () => {
     <Switch>
       <Route exact path="/" component={Home}/>
       <Route path="/all-movies" render={() => (<Movies gqlQuery={listMovies} />)}/>
+
       <Route path="/my-reviews" render={() => (<Reviews gqlQuery={getMovieReviewsByUser} params={{ id: currentUser?.id}} />)}/>
       <Route path="/all-reviews" render={() => (<Reviews gqlQuery={getReviews} />)}/>
+      <Route path="/movie-reviews/:id" render={({ match }) => (<Reviews gqlQuery={getMovieReviews} params={{ id: match.params.id }} />)}/>
+
       <Route path="/new-review" render={() => (<NewReviews gqlQuery={setMovieReview} />)}/>
       <Route path="/edit-review/:id" render={() => (<NewReviews gqlQuery={updateMovieReview} />)}/>
+      <Route path="/new-movie-review/:movieId" render={() => (<NewReviews gqlQuery={setMovieReview} />)}/>
     </Switch>
   );
 }

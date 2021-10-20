@@ -4,8 +4,10 @@ import { parseMovieList } from './utils';
 import { useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
-import { Container } from './styles';
+import { Container, ButtonsBox } from './styles';
+import Button from '../../components/button';
 import Card from '../../components/card';
+import { PrimaryTheme } from '../../themes/primary';
 
 interface MoviesList {
   gqlQuery: any,
@@ -13,7 +15,7 @@ interface MoviesList {
   width?: string
 }
 
-const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params, width, children }) => {
+const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params, width }) => {
   const { error, data } = useQuery(gqlQuery, { variables: params });
   const [movies, setMovies] = useState<Array<MovieData>>([]);
 
@@ -36,7 +38,10 @@ const MoviesList: React.FC<MoviesList> = ({ gqlQuery, params, width, children })
         text={`Directed by ${movie?.directorName} | Total Reviews: ${movie.reviewCount}`}
         subtitle={`Released: ${movie?.releaseDate}`}
         >
-          {children}
+          <ButtonsBox>
+            <Button text="Add review" link={`/new-movie-review/${movie?.id}`} theme={PrimaryTheme.button} />
+            <Button text="See movie's reviews" link={`/movie-reviews/${movie?.id}`} theme={PrimaryTheme.link} />
+          </ButtonsBox>
         </Card>
       )
     )}

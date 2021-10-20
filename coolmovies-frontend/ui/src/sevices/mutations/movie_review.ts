@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const setMovieReview = gql`
-  mutation movieReview(
+  mutation createMovieReview(
     $title: String!
     $movieId: UUID!
     $userReviewerId: UUID!
