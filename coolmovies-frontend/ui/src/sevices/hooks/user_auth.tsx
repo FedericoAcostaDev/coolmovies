@@ -44,4 +44,4 @@ export const CurrentUserProvider: React.FunctionComponent = ({ children }) => {
   );
 };
 
-export const useCurrentUserContext = () =>  useContext(UserAuthContext);
+export const useCurrentUserContext = () => useContext(UserAuthContext);

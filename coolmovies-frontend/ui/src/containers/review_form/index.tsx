@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from '../../sevices/hooks/router';
 import { useMutation } from '@apollo/client';
 
 import { useCurrentUserContext } from '../../sevices/hooks/user_auth';
@@ -25,6 +26,7 @@ interface ReviewForm {
 
 const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review, movie }) => {
   const { currentUser } = useCurrentUserContext();
+  const { history } = useRouter();
 
   const [name, setName] = useState("");
   const [movieId, setMovieId] = useState("");
@@ -44,7 +46,10 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review, movie }) => {
     movie && setMovieId(movie)
   }, [review, movie])
 
-  const createReview: Function = (data: ReviewData) => createMovieReview({ variables: data, refetchQueries: [{ query: getReviews }]});
+  const createReview: Function = async (data: ReviewData) => {
+    await createMovieReview({ variables: data, refetchQueries: [{ query: getReviews }]});
+    history.push('/my-reviews');
+  };
 
   const sendReview = () => (id || movieId) && createReview({
     title: name,
@@ -63,16 +68,16 @@ const ReviewForm: React.FC<ReviewForm> = ({ id, gqlQuery, review, movie }) => {
         defaultValue={name}
         onChange={(e) => setName(e.target.value)} 
       />
-      {!review?.movieId && 
-        (<>
-          <Label>Movie id</Label>
-          <Input
-            type="text"
-            defaultValue={movieId}
-            onChange={(e) => setMovieId(e.target.value)} 
-          />
-        </>)
-      }
+        {!review?.movieId && 
+          (<>
+            <Label>Movie id</Label>
+            <Input
+              type="text"
+              defaultValue={movieId}
+              onChange={(e) => setMovieId(e.target.value)} 
+            />
+          </>)
+        }
       <Label>Review</Label>
       <Input
         type="text"

@@ -21,14 +21,13 @@ interface ReviewList {
 
 const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => {
   const { error, data, refetch } = useQuery(gqlQuery, { variables: params });
+  const [reviews, setReviews] = useState([]);
   const [deleteReview] = useMutation<ReviewData>(deleteMovieReview);
 
   const deleteCurrentReview = (param: string) => {
     deleteReview({ variables: { id: param }});
     refetch();
   };
-
-  const [reviews, setReviews] = useState([]);
 
   const updateReviewList = (data: ReviewListParam) => {
     const parsedData = parseReviewList(data);
@@ -40,16 +39,7 @@ const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => 
     error && console.log(error);
   }, [data, currentUser]);
 
-  const cardSize = {
-    maxWidth: '400px',
-    minWidth: '300px',
-    height: 'auto',
-    maxHeight: '500px'
-  };
-
-  const canUserEditReview = (id: string) => {
-    return id === currentUser?.id
-  }
+  const canUserEditReview = (id: string) => id === currentUser?.id;
 
   const renderOwnerButtons = (review: ReviewData) => (
     <ButtonsBox>
@@ -57,6 +47,13 @@ const ReviewList: React.FC<ReviewList> = ({ gqlQuery, params, currentUser }) => 
       <Button text="Delete" size="md" color="#b22222" border="1px solid #b22222" onClick={() => deleteCurrentReview(review.id)} />
     </ButtonsBox>
   )
+
+  const cardSize = {
+    maxWidth: '400px',
+    minWidth: '300px',
+    height: 'auto',
+    maxHeight: '500px'
+  };
 
   return (
     <Container>
