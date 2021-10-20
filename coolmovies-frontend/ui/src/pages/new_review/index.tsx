@@ -41,7 +41,7 @@ const NewReview: React.FC<NewReviewPage> = (props) => {
 
   return (
     <Box backgroundImage={BgImg}>
-      <ReviewForm gqlQuery={props.gqlQuery} id={id} review={reviewData?.movieReviewById} />
+      {!loading && <ReviewForm gqlQuery={props.gqlQuery} id={id} review={reviewData?.movieReviewById} />}
     </Box>
   )
 }
