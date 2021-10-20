@@ -12,9 +12,9 @@
 
 # :sparkles: Introduction
 
-Coolmovies is an app where you can share your ideas about... Movies. Here you can read other people's reviews and also post your own. You are allowed to changed your mind so be free to edit whatever you've said before.
+Coolmovies is an app where you can share your ideas about... Movies. Here you can read other people's reviews and also post your own. You are allowed to change your mind so be free to edit whatever you've said before.
 
-Coolmovies is also an CRUD app which was my first project using Docker, GraphQL, Apollo and Typescript. I'm not used to coding with React so far, but I've already tried to built some basic apps with it when I was first studying javascript.
+Coolmovies is also a CRUD app which was my first project using Docker, GraphQL, Apollo and Typescript. I'm not used to coding with React until then, but I've already tried to built some basic apps with it when I was first studying javascript.
 
 ## :pushpin: Technologies
 
@@ -93,7 +93,7 @@ This shortcut has also been set in our package.json file.
 
   `docker ps`
 
-2. Your terminal should show something like this:
+2. Your terminal should show a table where two first collums ate "containe id" and "image", looks something like this:
 
 | CONTAINER ID |  IMAGE          |
 |--------------|-----------------|
