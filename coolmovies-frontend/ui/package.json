@@ -28,9 +28,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "docker:watch": "sudo docker run --rm -it --name web -p 3000:3000 -v $(pwd):/app react-coolmovies:app",
-    "docker:up": "sudo docker build -t react-coolmovies:app .",
-    "docker:run": "sudo docker run -p 3000:3000 react-coolmovies:app",
+    "docker:watch": "docker run --rm -it --name web -p 3000:3000 -v $(pwd):/app react-coolmovies:app",
+    "docker:up": "docker build -t react-coolmovies:app .",
+    "docker:run": "docker run -p 3000:3000 react-coolmovies:app",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -25,10 +25,15 @@ interface ReviewData {
 const NewReview: React.FC<NewReviewPage> = (props) => {
   const { id } = useParams<{ id?: string }>();
   const [reviewData, setReviewData] = useState<ReviewData>();
-  const { error, loading, data } = useQuery(getReviewById, { variables: { id: id } });
+  
+  const { error, loading, data } = useQuery(getReviewById, 
+    { 
+      variables: { id: id },
+      skip: !id
+   });
 
   useEffect(() => {
-    if(id && !loading) {
+    if(!loading) {
       data && setReviewData(data);
       error && console.log(error);
     }

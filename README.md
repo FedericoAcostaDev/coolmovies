@@ -11,9 +11,9 @@
 
 # :sparkles: Introduction
 
-This is my first project using GraphQL, Apollo and Typescript. I'm also not used to react, but 'ive already tried to built some basic apps with it, when I was first studying javascript a year ago.
+Coolmovies is an app where you can share your ideas about... Movies. Here you can read other people's reviews and also post your own. You are allowed to changed your mind so be free to edit whatever you've said before.
 
-## :pushpin: About
+This was my first project using Docker, GraphQL, Apollo and Typescript. I'm not used to coding with React so far, but I've already tried to built some basic apps with it when I was first studying javascript.
 
 ## :pushpin: Technologies
 
